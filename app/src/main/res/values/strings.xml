@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Crazy Riches</string>
+
+    <string name="firebase_root_url">crazy</string>
+    <string name="firebase_organic">crazy_switch</string>
+    <string name="one_signal_key">f61b4303-6064-46a6-aca3-8d94a4f6933f</string>
+    <string name="apps_dev_key">556cGj6oVySjCL5W2pvbTP</string>
+    <string name="fb_app_id">1719243661758363</string>
+    <string name="fb_at">bSN1ryDO354Ap36LS4OAdd7HkG4</string>
+</resources>

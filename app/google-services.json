@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "353294278817",
+    "project_id": "crazy-riches",
+    "storage_bucket": "crazy-riches.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353294278817:android:79cc36a4a60e223cfe10e0",
+        "android_client_info": {
+          "package_name": "com.parkourrace.gam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353294278817-fueceaen5j3ig1m1kd344d08v86aboni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUQ8YA3-iQOLXgfiqqwNymd6-_q51zX5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353294278817-fueceaen5j3ig1m1kd344d08v86aboni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
