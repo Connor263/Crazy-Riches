@@ -153,7 +153,7 @@ fun GameScreen(navController: NavController) {
         }
         argument?.let {
             navController.navigate("score/$argument?score=${viewModel.score.value}") {
-                popUpTo("init") { inclusive = true }
+                popUpTo("game") { inclusive = true }
             }
         }
     }

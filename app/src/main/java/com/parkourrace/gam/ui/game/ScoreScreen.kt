@@ -21,7 +21,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.parkourrace.gam.R
 import com.parkourrace.gam.ui.game.menu.MenuTextButton
-import com.parkourrace.gam.ui.game.menu.navigateToGame
 
 @Composable
 fun ScoreScreen(navController: NavController, gameOver: Int, score: Int) {
@@ -83,7 +82,13 @@ fun ScoreScreen(navController: NavController, gameOver: Int, score: Int) {
 
 fun navigateToMenu(navController: NavController) {
     navController.navigate("menu") {
-        popUpTo("init") { inclusive = true }
+        popUpTo("menu") { inclusive = true }
+    }
+}
+
+fun navigateToGame(navController: NavController) {
+    navController.navigate("game") {
+        popUpTo("menu") { inclusive = true }
     }
 }
 

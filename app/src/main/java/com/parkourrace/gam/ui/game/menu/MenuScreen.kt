@@ -59,9 +59,7 @@ fun MenuTextButton(text: String, onClick: () -> Unit) {
 }
 
 fun navigateToGame(navController: NavController) {
-    navController.navigate("game") {
-        popUpTo("init") { inclusive = true }
-    }
+    navController.navigate("game")
 }
 
 
