@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.parkourrace.gam.R
+import com.parkourrace.gam.ui.game.navigateToGame
 
 @Composable
 fun MenuScreen(navController: NavController) {
@@ -35,7 +36,15 @@ fun MenuScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             MenuTextButton(text = "Play") {
-                navigateToGame(navController)
+                navController.navigate("game")
+            }
+            Spacer(Modifier.height(32.dp))
+            MenuTextButton(text = "Game rules") {
+                navController.navigate("rule")
+            }
+            Spacer(Modifier.height(32.dp))
+            MenuTextButton(text = "Options") {
+                navController.navigate("option")
             }
             Spacer(Modifier.height(32.dp))
             MenuTextButton(text = "Exit") {
@@ -56,10 +65,6 @@ fun MenuTextButton(text: String, onClick: () -> Unit) {
     ) {
         Text(text, fontSize = 28.sp, color = Color.Black, fontWeight = FontWeight.Bold)
     }
-}
-
-fun navigateToGame(navController: NavController) {
-    navController.navigate("game")
 }
 
 

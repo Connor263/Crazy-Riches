@@ -1,18 +1,25 @@
 package com.parkourrace.gam.ui.game
 
+import android.content.Context
+import android.util.Log
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.parkourrace.gam.R
 import com.parkourrace.gam.data.game.model.Block
-import com.parkourrace.gam.utils.SCORE_TO_WIN
+import com.parkourrace.gam.data.game.preferences.GamePreferencesDataStore
 import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
 import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
-import com.parkourrace.gam.utils.enums.GameOver
 import com.parkourrace.gam.utils.generateBlock
-import kotlin.random.Random
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 class GameViewModel : ViewModel() {
+    var moveSpeed by mutableStateOf(1000)
+
     var listOfBlock = mutableStateListOf<Block>()
         private set
 
@@ -34,7 +41,7 @@ class GameViewModel : ViewModel() {
     var focusBlockIsCreated = mutableStateOf(false)
         private set
 
-    var gameOver = mutableStateOf(GameOver.IDLE)
+    var gameOver = mutableStateOf(false)
         private set
 
 
@@ -102,7 +109,7 @@ class GameViewModel : ViewModel() {
         resultList.addAll(leadBlocks)
         resultList.addAll(restBlocks)
         if (resultList.any { it.row >= TETRIS_ROW_SIZE }) {
-            gameOver.value = GameOver.LOSE
+            gameOver.value = true
             return
         }
 
@@ -191,9 +198,6 @@ class GameViewModel : ViewModel() {
 
     private fun increaseScore() {
         score.value += 50
-        if (score.value >= SCORE_TO_WIN) {
-            gameOver.value = GameOver.WIN
-        }
     }
 
     fun moveLeftSide() {
@@ -229,5 +233,10 @@ class GameViewModel : ViewModel() {
 
     private fun disableQuickMoveDown() {
         quickMoveDown.value = false
+    }
+
+    fun setLevel(context: Context) = viewModelScope.launch {
+        val level = GamePreferencesDataStore(context).level.first()
+        moveSpeed = 1000 / (if (level - 1 == 0) 1 else level * 2)
     }
 }

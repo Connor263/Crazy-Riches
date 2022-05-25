@@ -6,91 +6,121 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.facebook.FacebookSdk
+import com.facebook.applinks.AppLinkData
+import com.google.android.gms.ads.identifier.AdvertisingIdClient
 import com.onesignal.OneSignal
-import com.parkourrace.gam.data.web.model.CrazyRichesWebLink
-import com.parkourrace.gam.data.web.preferences.CrazyRichesLinkPreferencesDataStore
-import com.parkourrace.gam.utils.crazyRichesVigenere
+import com.parkourrace.gam.data.web.model.TetRuokrapLink
+import com.parkourrace.gam.data.web.preferences.TetParkourElytsLinkPreferencesDataStore
+import com.parkourrace.gam.data.web.repo.TetRoukrapFirebaseImpl
+import com.parkourrace.gam.utils.comparkourracegam
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 const val TAG = "TAG"
 
 class MainViewModel : ViewModel() {
-    var crazyRichesRouteString = mutableStateOf("")
+    var routeString = mutableStateOf("")
 
-    val crazyRichesLoading = mutableStateOf(true)
+    val tetParkourStylesLoading = mutableStateOf(true)
 
-    val crazyRichesPreferences: (Context) -> CrazyRichesLinkPreferencesDataStore =
-        { CrazyRichesLinkPreferencesDataStore(it) }
+    private val tetParkourElytsLink = TetRuokrapLink()
+
+    private val tetRoukrapFirebaseImpl: (Context) -> TetRoukrapFirebaseImpl =
+        { TetRoukrapFirebaseImpl(it) }
 
 
-    private val crazyRichesLink = CrazyRichesWebLink()
+    val tetParkourElytsLinkPreferences: (Context) -> TetParkourElytsLinkPreferencesDataStore =
+        { TetParkourElytsLinkPreferencesDataStore(it) }
 
-    fun crazyRichesGetCacheLink(context: Context, callback: (String) -> Unit) = viewModelScope.launch {
-        callback(crazyRichesPreferences(context).crazyRichesLink.first())
-    }
-
-    fun crazyRichesSetUrlAndOrganic(url: String, organic: Boolean, callback: (Boolean) -> Unit) {
-        crazyRichesLink.crazyRichesUrl = url
-        crazyRichesLink.crazyRichesOrganicAccess = organic
-        callback(url.contains("jhfe".crazyRichesVigenere()))
-        Log.d(TAG, "crazyRichesSetUrlAndOrganic: $url $organic")
-    }
-
-    fun checkOrganic() =
-        crazyRichesLink.crazyRichesMediaSource == "qfspnzm".crazyRichesVigenere() && crazyRichesLink.crazyRichesOrganicAccess == false
-
-    fun crazyRichesSetGoogleID(id: String) {
-        crazyRichesLink.crazyRichesGoogleId = id
-        OneSignal.setExternalUserId(id)
-        Log.d(TAG, "crazyRichesSetGoogleID: $id")
-    }
-
-    fun crazyRichesSetAFID(id: String) {
-        crazyRichesLink.crazyRichesAppsFlyerUserId = id
-        Log.d(TAG, "crazyRichesSetAFID: $id")
-    }
-
-    fun crazyRichesSetAFStatus(value: String) {
-        val crazyRichesOrganic = "qfspnzm".crazyRichesVigenere().replaceFirstChar { it.uppercase() }
-        if (value == crazyRichesOrganic && crazyRichesLink.crazyRichesDeepLink == null) {
-            crazyRichesLink.crazyRichesMediaSource = "qfspnzm".crazyRichesVigenere()
+    fun getTetParkourElytsLinkValue(context: Context, callback: (String) -> Unit) =
+        viewModelScope.launch {
+            callback(tetParkourElytsLinkPreferences(context).tetParkourElystLink.first())
         }
-        Log.d(TAG, "crazyRichesSetAFStatus: $value")
-    }
 
-    fun crazyRichesSetAFCampaign(value: String) {
-        crazyRichesLink.crazyRichesCampaign = value
-        crazyRichesLink.crazyRichesCampaign?.let {
-            crazyRichesLink.crazyRichesSubAll = it.split("_")
+    fun tetRoukrapElytsFirebase(context: Context, callback: (Boolean) -> Unit) {
+        tetRoukrapFirebaseImpl(context).getTetRoukrapUrl { url ->
+            callback(url.contains("jhfe".comparkourracegam()))
+            tetParkourElytsLink.tetRuokrapLinkUrl = url
+
+            Log.d(TAG, "tetRoukrapElytsFirebase: Url $url")
         }
-        Log.d(TAG, "crazyRichesSetAFCampaign: campaign $value")
-        Log.d(TAG, "crazyRichesSetAFCampaign: subAll $value")
-    }
+        tetRoukrapFirebaseImpl(context).getTetRoukrapSwitch { switch ->
+            tetParkourElytsLink.tetRuokrapLinkOrganicAccess = switch
 
-    fun crazyRichesSetAFChannel(value: String) {
-        crazyRichesLink.crazyRichesAfChannel = value
-        Log.d(TAG, "crazyRichesSetAFChannel: $value")
-    }
-
-    fun crazyRichesSetAFMediaSource(value: String) {
-        crazyRichesLink.crazyRichesMediaSource = value
-        Log.d(TAG, "crazyRichesSetMediaSource: $value")
-    }
-
-    fun crazyRichesSetDeepLink(value: Uri?) {
-        crazyRichesLink.crazyRichesDeepLink = value?.toString()
-        crazyRichesLink.crazyRichesDeepLink?.let {
-            val crazyRichesArray = it.split("//")
-            crazyRichesLink.crazyRichesSubAll = crazyRichesArray[1].split("_")
+            Log.d(TAG, "tetRoukrapElytsFirebase: Switch $switch")
         }
-        Log.d(TAG, "crazyRichesSetDeepLink: deepLink $value")
-        Log.d(TAG, "crazyRichesSetDeepLink: subAll ${crazyRichesLink.crazyRichesSubAll}")
     }
 
-    fun crazyRichesCollectLink(context: Context, callback: (String) -> Unit) = viewModelScope.launch {
-        val crazyRichesLink = crazyRichesLink.crazyRichesCollect(context)
-        crazyRichesPreferences(context).crazyRichesSaveLink(crazyRichesLink)
-        callback(crazyRichesLink)
+    fun tetParkourSwitchCheckOrganic() =
+        tetParkourElytsLink.tetRuokrapLinkMediaSource == "qfspnzm".comparkourracegam() && tetParkourElytsLink.tetRuokrapLinkOrganicAccess == false
+
+
+    fun aFTetParkourElytsIDSetAFID(id: String) {
+        tetParkourElytsLink.tetRuokrapLinkAppsFlyerUserId = id
+        Log.d(TAG, "SetAFID: $id")
+    }
+
+    fun tetParkourElytsParkourSetStatusAF(value: String) {
+        val tetParkourSwitch = "qfspnzm".comparkourracegam().replaceFirstChar { it.uppercase() }
+        if (value == tetParkourSwitch && tetParkourElytsLink.tetRuokrapLinkDeepLink == null) {
+            tetParkourElytsLink.tetRuokrapLinkMediaSource = "qfspnzm".comparkourracegam()
+        }
+        Log.d(TAG, "SetAFStatus: $value")
+    }
+
+    fun tetParkourSetElytsSetAFCampaign(value: String) {
+        tetParkourElytsLink.tetRuokrapLinkCampaign = value
+        tetParkourElytsLink.tetRuokrapLinkCampaign?.let {
+            tetParkourElytsLink.tetRuokrapLinkSubAll = it.split("_")
+        }
+        Log.d(TAG, "SetAFCampaign: campaign $value")
+        Log.d(TAG, "SetAFCampaign: subAll ${tetParkourElytsLink.tetRuokrapLinkSubAll}")
+    }
+
+    fun channelAFTetParkourElytsSetAFChannel(value: String) {
+        tetParkourElytsLink.tetRuokrapLinkAfChannel = value
+        Log.d(TAG, "SetAFChannel: $value")
+    }
+
+    fun mediaTetParkourSourceElytsSetAFMediaSource(value: String) {
+        tetParkourElytsLink.tetRuokrapLinkMediaSource = value
+        Log.d(TAG, "SetMediaSource: $value")
+    }
+
+    private fun deepTetParkourElytsSetDeepLink(value: Uri?) {
+        tetParkourElytsLink.tetRuokrapLinkDeepLink = value?.toString()
+        tetParkourElytsLink.tetRuokrapLinkDeepLink?.let {
+            val parkRuokrapTetArray = it.split("//")
+            tetParkourElytsLink.tetRuokrapLinkSubAll = parkRuokrapTetArray[1].split("_")
+        }
+        Log.d(TAG, "SetDeepLink: deepLink $value")
+        Log.d(TAG, "SetDeepLink: subAll ${tetParkourElytsLink.tetRuokrapLinkSubAll}")
+    }
+
+    fun linkBuildTetRoukrapBuildLink(context: Context, callback: (String) -> Unit) =
+        viewModelScope.launch {
+            val stringUrlTetParkourElytsLinkString =
+                tetParkourElytsLink.tetRuokrapLinkCollect(context)
+            tetParkourElytsLinkPreferences(context).tetParkourElytsSaveLink(
+                stringUrlTetParkourElytsLinkString
+            )
+            callback(stringUrlTetParkourElytsLinkString)
+        }
+
+    fun ruokrapTetFBGOOGOLinkWOrkId(context: Context) = viewModelScope.launch(Dispatchers.IO) {
+        val wadTetParkourGootetParkourStylesLoadinggleID =
+            AdvertisingIdClient.getAdvertisingIdInfo(context).id.toString()
+        tetParkourElytsLink.tetRuokrapLinkGoogleId = wadTetParkourGootetParkourStylesLoadinggleID
+        OneSignal.setExternalUserId(wadTetParkourGootetParkourStylesLoadinggleID)
+        Log.d(TAG, "SetGoogleID: $wadTetParkourGootetParkourStylesLoadinggleID")
+
+
+        FacebookSdk.setAutoInitEnabled(true)
+        FacebookSdk.fullyInitialize()
+        AppLinkData.fetchDeferredAppLinkData(context) {
+            deepTetParkourElytsSetDeepLink(it?.targetUri)
+        }
     }
 }

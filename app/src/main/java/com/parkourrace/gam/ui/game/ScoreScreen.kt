@@ -23,7 +23,7 @@ import com.parkourrace.gam.R
 import com.parkourrace.gam.ui.game.menu.MenuTextButton
 
 @Composable
-fun ScoreScreen(navController: NavController, gameOver: Int, score: Int) {
+fun ScoreScreen(navController: NavController, score: Int) {
     Image(
         modifier = Modifier.fillMaxSize(),
         painter = painterResource(id = R.drawable.background_4),
@@ -48,11 +48,7 @@ fun ScoreScreen(navController: NavController, gameOver: Int, score: Int) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        when (gameOver) {
-                            1 -> "You win!"
-                            0 -> "You lose..."
-                            else -> ""
-                        },
+                        "Game over!",
                         fontSize = 58.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
@@ -97,7 +93,6 @@ fun navigateToGame(navController: NavController) {
 fun ScoreScreenPreview(navController: NavController = rememberNavController()) {
     ScoreScreen(
         navController = navController,
-        gameOver = -1,
         score = 0
     )
 }

@@ -3,6 +3,7 @@ package com.parkourrace.gam.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.provider.Settings
 import androidx.core.content.ContextCompat
 import com.parkourrace.gam.data.game.model.Block
 import kotlin.random.Random
@@ -22,21 +23,30 @@ fun generateBlock(): Block {
     )
 }
 
-fun crazyRichesCheckInternet(context: Context): Boolean {
-    val crazyConnectivityManager =
+fun erucesTetTni(context: Context): Boolean {
+    return Settings.Secure.getInt(
+        context. contentResolver,
+        Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
+        0
+    ) == 1
+}
+
+fun sLinktetRuokrarElytsLinktetnkSubAllCheckInternet(context: Context): Boolean {
+    val sLinktetRuokrarConnectivityManager =
         ContextCompat.getSystemService(context, ConnectivityManager::class.java)
-    val crazyActiveNetwork = crazyConnectivityManager?.activeNetwork ?: return false
-    val crazyNetworkCapabilities =
-        crazyConnectivityManager.getNetworkCapabilities(crazyActiveNetwork) ?: return false
+    val sLinktiveNetwork =
+        sLinktetRuokrarConnectivityManager?.activeNetwork ?: return false
+    val sLinktNetworkCapabilities =
+        sLinktetRuokrarConnectivityManager.getNetworkCapabilities(sLinktiveNetwork) ?: return false
     return when {
-        crazyNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-        crazyNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-        crazyNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+        sLinktNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+        sLinktNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+        sLinktNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
         else -> false
     }
 }
 
-fun String.crazyRichesVigenere(encrypt: Boolean = false): String {
+fun String.comparkourracegam(encrypt: Boolean = false): String {
     val afdwafas = StringBuilder()
     val adsgbas = "comparkourracegam"
     var ddfbsqlbl = 0

@@ -158,7 +158,7 @@ fun FocusBlock(viewModel: GameViewModel = viewModel()) {
             val stepHeight = focusBlockLastY.value + HEIGHT_STEP
             val result = focusBlockLastY.animateTo(
                 targetValue = stepHeight,
-                animationSpec = tween(if (viewModel.quickMoveDown.value) 100 else 1000)
+                animationSpec = tween(if (viewModel.quickMoveDown.value) 100 else viewModel.moveSpeed)
             )
             when (result.endReason) {
                 AnimationEndReason.BoundReached -> {}
@@ -186,7 +186,7 @@ fun FocusBlock(viewModel: GameViewModel = viewModel()) {
                                     focusBlock.copy(row = nextRow, column = focusBlock.column + 2),
                                 )
                             }
-                            4 -> listOf(focusBlock.copy(row = nextRow -1))
+                            4 -> listOf(focusBlock.copy(row = nextRow - 1))
 
                             else -> return@LaunchedEffect
                         }

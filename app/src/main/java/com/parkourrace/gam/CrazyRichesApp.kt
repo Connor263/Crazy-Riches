@@ -16,12 +16,12 @@ import com.parkourrace.gam.ui.InitScreen
 import com.parkourrace.gam.ui.game.GameScreen
 import com.parkourrace.gam.ui.game.ScoreScreen
 import com.parkourrace.gam.ui.game.menu.MenuScreen
-import com.parkourrace.gam.ui.web.CrazyWebScreen
+import com.parkourrace.gam.ui.game.options.OptionScreen
+import com.parkourrace.gam.ui.game.rules.RuleScreen
+import com.parkourrace.gam.ui.web.TetLoadingElytsWebScreenWebScreen
 
 @Composable
-fun CrazyRichesApp(navController: NavHostController) {
-    val viewModel: MainViewModel = viewModel()
-
+fun CrazyRichesApp(navController: NavHostController, viewModel: MainViewModel = viewModel()) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         contentColor = MaterialTheme.colors.background
@@ -31,23 +31,25 @@ fun CrazyRichesApp(navController: NavHostController) {
             navController = navController,
             startDestination = "init"
         ) {
-            composable("init") { InitScreen() }
+            composable("init") { InitScreen(viewModel) }
 
             composable("menu") { MenuScreen(navController) }
 
+            composable("option") { OptionScreen(navController) }
+
+            composable("rule") { RuleScreen(navController) }
+
             composable("game") { GameScreen(navController) }
 
-            composable("score/{gameOver}?score={score}", arguments = listOf(
-                navArgument("gameOver") {
-                    type = NavType.IntType
-                }, navArgument("score") {
-                    type = NavType.IntType
-                    defaultValue = 0
-                })
+            composable(
+                "score/{score}", arguments = listOf(
+                    navArgument("score") {
+                        type = NavType.IntType
+                        defaultValue = 0
+                    })
             ) { backStackEntry ->
                 ScoreScreen(
                     navController,
-                    backStackEntry.arguments?.getInt("gameOver") ?: -1,
                     backStackEntry.arguments?.getInt("score") ?: 0
                 )
             }
@@ -56,14 +58,14 @@ fun CrazyRichesApp(navController: NavHostController) {
                 type = NavType.StringType
             })) { backStackEntry ->
                 backStackEntry.arguments?.getString("url")?.let { url ->
-                    CrazyWebScreen(navController, url)
+                    TetLoadingElytsWebScreenWebScreen(navController, url)
                 }
             }
         }
     }
 
-    LaunchedEffect(viewModel.crazyRichesRouteString.value) {
-        val route = viewModel.crazyRichesRouteString.value
+    LaunchedEffect(viewModel.routeString.value) {
+        val route = viewModel.routeString.value
         if (route.isNotBlank()) {
             navController.navigate(route) {
                 popUpTo("init") {

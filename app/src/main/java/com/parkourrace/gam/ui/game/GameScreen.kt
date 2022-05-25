@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,7 +30,6 @@ import com.parkourrace.gam.ui.game.composables.Board
 import com.parkourrace.gam.ui.game.composables.FocusBlockView
 import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
 import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
-import com.parkourrace.gam.utils.enums.GameOver
 
 @Preview(showBackground = true)
 @Composable
@@ -40,6 +40,8 @@ fun GameScreenPreview(navController: NavController = rememberNavController()) {
 @Composable
 fun GameScreen(navController: NavController) {
     val viewModel: GameViewModel = viewModel()
+    val context = LocalContext.current
+
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp.dp
     val screenWidth = configuration.screenWidthDp.dp
@@ -142,17 +144,13 @@ fun GameScreen(navController: NavController) {
 
 
     LaunchedEffect(Unit) {
+        viewModel.setLevel(context)
         viewModel.focusBlockIsCreated.value = true
     }
 
     LaunchedEffect(viewModel.gameOver.value) {
-        val argument = when (viewModel.gameOver.value) {
-            GameOver.WIN -> 1
-            GameOver.LOSE -> 0
-            GameOver.IDLE -> null
-        }
-        argument?.let {
-            navController.navigate("score/$argument?score=${viewModel.score.value}") {
+        if (viewModel.gameOver.value) {
+            navController.navigate("score/${viewModel.score.value}") {
                 popUpTo("game") { inclusive = true }
             }
         }

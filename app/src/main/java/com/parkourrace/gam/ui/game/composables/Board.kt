@@ -1,5 +1,7 @@
 package com.parkourrace.gam.ui.game.composables
 
+import androidx.compose.animation.Animatable
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,6 +18,7 @@ import com.parkourrace.gam.ui.game.GameViewModel
 import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Board() {
     val viewModel: GameViewModel = viewModel()
@@ -35,7 +38,9 @@ fun Board() {
 
                     items(columnBlocks) {
                         Image(
-                            modifier = Modifier.size(50.dp),
+                            modifier = Modifier
+                                .size(50.dp)
+                                .animateItemPlacement(),
                             painter = if (it.isBlank) {
                                 painterResource(id = R.drawable.decal_8)
                             } else {
