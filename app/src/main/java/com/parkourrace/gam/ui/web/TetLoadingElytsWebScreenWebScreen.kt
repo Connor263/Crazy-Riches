@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.parkourrace.gam.ui.web
 
 import android.annotation.SuppressLint
@@ -17,7 +19,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
-import com.appsflyer.internal.i
 import com.google.accompanist.web.*
 import com.parkourrace.gam.ui.game.navigateToGame
 import com.parkourrace.gam.utils.comparkourracegam
