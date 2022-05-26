@@ -39,8 +39,7 @@ fun Board() {
                     items(columnBlocks) {
                         Image(
                             modifier = Modifier
-                                .size(50.dp)
-                                .animateItemPlacement(),
+                                .size(50.dp),
                             painter = if (it.isBlank) {
                                 painterResource(id = R.drawable.decal_8)
                             } else {

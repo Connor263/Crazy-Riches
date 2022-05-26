@@ -97,7 +97,7 @@ class GameViewModel : ViewModel() {
             }
         }
 
-        checkWinRow(block.type, block.row)
+
         focusBlockIsCreated.value = false
         disableQuickMoveDown()
         createFocusBlock()
@@ -154,7 +154,7 @@ class GameViewModel : ViewModel() {
         listOfBlock.addAll(resultList)
     }
 
-    private fun checkWinRow(type: Int, row: Int) {
+    fun checkWinRow(type: Int, row: Int, callback: (Boolean) -> Unit) {
         val coef = when (type) {
             0 -> 0
             1 -> 1
@@ -163,7 +163,8 @@ class GameViewModel : ViewModel() {
             4 -> 3
             else -> 0
         }
-        for (n in row + coef downTo 0) {
+        var indexValid = 0
+        for (n in row + coef + 1 downTo 0) {
             val blockInRow = listOfBlock.filter { it.row == n && !it.isBlank }
             if (blockInRow.count() == TETRIS_COLUMN_SIZE) {
                 increaseScore()
@@ -173,8 +174,10 @@ class GameViewModel : ViewModel() {
                         it.row--
                     }
                 }
+                indexValid++
             }
         }
+        callback(indexValid != 0)
     }
 
     private fun removeBlocks(list: List<Block>) {
@@ -237,6 +240,6 @@ class GameViewModel : ViewModel() {
 
     fun setLevel(context: Context) = viewModelScope.launch {
         val level = GamePreferencesDataStore(context).level.first()
-        moveSpeed = 1000 / (if (level - 1 == 0) 1 else level * 2)
+        moveSpeed = 1000 / (if (level - 1 == 0) 1 else level)
     }
 }

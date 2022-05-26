@@ -9,11 +9,19 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class OptionsViewModel : ViewModel() {
-    val getOption: (Context) -> Flow<Int> = {
+    val getLevel: (Context) -> Flow<Int> = {
         GamePreferencesDataStore(it).level
     }
 
-    fun saveOption( context: Context,value: Int) = viewModelScope.launch {
+    val getFont: (Context) -> Flow<Int> = {
+        GamePreferencesDataStore(it).font
+    }
+
+    fun saveFont( context: Context,value: Int) = viewModelScope.launch {
+        GamePreferencesDataStore(context).saveFont(value)
+    }
+
+    fun saveLevel( context: Context,value: Int) = viewModelScope.launch {
         GamePreferencesDataStore(context).saveLevel(value)
     }
 }

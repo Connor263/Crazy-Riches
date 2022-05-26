@@ -63,7 +63,13 @@ fun MenuTextButton(text: String, onClick: () -> Unit) {
         shape = RoundedCornerShape(24.dp),
         colors = ButtonDefaults.textButtonColors(backgroundColor = MaterialTheme.colors.primary)
     ) {
-        Text(text, fontSize = 28.sp, color = Color.Black, fontWeight = FontWeight.Bold)
+        Text(
+            text,
+            fontSize = 28.sp,
+            color = Color.Black,
+            fontFamily = MaterialTheme.typography.body1.fontFamily,
+            fontWeight = FontWeight.Bold,
+        )
     }
 }
 

@@ -10,14 +10,19 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.parkourrace.gam.R
 import com.parkourrace.gam.ui.game.GameViewModel
 import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
 import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
+import com.parkourrace.gam.utils.enums.GameSound
+import com.parkourrace.gam.utils.makeSound
 
 @Composable
 fun FocusBlock(viewModel: GameViewModel = viewModel()) {
+    val context = LocalContext.current
     val configuration = LocalConfiguration.current
     val screenHeight = configuration.screenHeightDp.dp
     val screenWidth = configuration.screenWidthDp.dp
@@ -205,6 +210,13 @@ fun FocusBlock(viewModel: GameViewModel = viewModel()) {
                             (block.row <= row && !isBlank)
                         ) {
                             viewModel.addBlock()
+                            makeSound(context, GameSound.DROP)
+
+                            viewModel.checkWinRow(block.type, block.row) { smash ->
+                                if (smash) {
+                                    makeSound(context, GameSound.ROW_MATCH)
+                                }
+                            }
 
                             index = 0
                             focusBlockLastX.snapTo(WIDTH_STEP.toFloat() * 3)

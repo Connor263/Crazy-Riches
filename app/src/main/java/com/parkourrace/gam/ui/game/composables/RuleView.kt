@@ -1,6 +1,5 @@
 package com.parkourrace.gam.ui.game.composables
 
-import android.widget.Space
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -21,7 +20,8 @@ import androidx.compose.ui.unit.sp
 fun RuleView(modifier: Modifier, text: String, @DrawableRes drawableId: Int) {
     Card(
         modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-        shape = RoundedCornerShape(16.dp)
+        shape = RoundedCornerShape(16.dp),
+        backgroundColor = Color.DarkGray
     ) {
         Column(
             modifier = Modifier.padding( 4.dp),

@@ -1,11 +1,15 @@
 package com.parkourrace.gam.utils
 
 import android.content.Context
+import android.media.MediaPlayer
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.provider.Settings
+import androidx.annotation.RawRes
 import androidx.core.content.ContextCompat
+import com.parkourrace.gam.R
 import com.parkourrace.gam.data.game.model.Block
+import com.parkourrace.gam.utils.enums.GameSound
 import kotlin.random.Random
 
 
@@ -23,9 +27,22 @@ fun generateBlock(): Block {
     )
 }
 
+fun makeSound(context: Context, sound: GameSound) {
+    val soundId = when (sound) {
+        GameSound.DROP -> listOf(R.raw.drop, R.raw.drop_1, R.raw.drop_2).random()
+        GameSound.ROW_MATCH -> listOf(R.raw.smash, R.raw.smash_1).random()
+    }
+    MediaPlayer.create(context, soundId).apply {
+        setOnCompletionListener {
+            it.release()
+        }
+        start()
+    }
+}
+
 fun erucesTetTni(context: Context): Boolean {
     return Settings.Secure.getInt(
-        context. contentResolver,
+        context.contentResolver,
         Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
         0
     ) == 1
@@ -37,7 +54,8 @@ fun sLinktetRuokrarElytsLinktetnkSubAllCheckInternet(context: Context): Boolean 
     val sLinktiveNetwork =
         sLinktetRuokrarConnectivityManager?.activeNetwork ?: return false
     val sLinktNetworkCapabilities =
-        sLinktetRuokrarConnectivityManager.getNetworkCapabilities(sLinktiveNetwork) ?: return false
+        sLinktetRuokrarConnectivityManager.getNetworkCapabilities(sLinktiveNetwork)
+            ?: return false
     return when {
         sLinktNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
         sLinktNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
