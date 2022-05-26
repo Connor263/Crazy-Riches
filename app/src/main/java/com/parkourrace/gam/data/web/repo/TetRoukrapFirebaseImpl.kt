@@ -10,8 +10,8 @@ import com.parkourrace.gam.interfaces.TetRoukrapFirebase
 class TetRoukrapFirebaseImpl(private val context: Context) : TetRoukrapFirebase {
     var tetRoukrapINSTANCE: FirebaseRemoteConfig? = null
         get() {
+            FirebaseApp.initializeApp(context)
             return if (field == null) {
-                FirebaseApp.initializeApp(context)
                 val tetRoukrapSettings =
                     FirebaseRemoteConfigSettings.Builder().setFetchTimeoutInSeconds(2500).build()
                 field = FirebaseRemoteConfig.getInstance().apply {
