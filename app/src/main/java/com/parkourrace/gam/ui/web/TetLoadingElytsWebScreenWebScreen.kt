@@ -17,6 +17,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
+import com.appsflyer.internal.i
 import com.google.accompanist.web.*
 import com.parkourrace.gam.ui.game.navigateToGame
 import com.parkourrace.gam.utils.comparkourracegam
@@ -62,8 +63,6 @@ fun TetLoadingElytsWebScreenWebScreen(navController: NavHostController, url: Str
             captureBackPresses = false,
             onCreated = {
                 loadElytsWebTetLoadScreenWeb(it)
-                lbTetLoadScreenTetLoadetLoadScreenWebeb(it)
-                klytsdScreenStyleWebeb(it)
             },
             client = object : AccompanistWebViewClient() {
                 override fun onPageFinished(view: WebView?, url: String?) {
@@ -110,6 +109,7 @@ fun loadElytsWebTetLoadScreenWeb(webView: WebView) = with(webView.settings) {
     javaScriptCanOpenWindowsAutomatically = true
     setAppCacheEnabled(true)
     webView.clearCache(false)
+    klytsdScreenStyleWebeb(webView)
 }
 
 fun lbTetLoadScreenTetLoadetLoadScreenWebeb(webView: WebView) = with(webView.settings) {
@@ -126,5 +126,6 @@ fun klytsdScreenStyleWebeb(webView: WebView) = with(webView.settings) {
     allowFileAccess = true
     CookieManager.getInstance().setAcceptCookie(true)
     CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true)
+    lbTetLoadScreenTetLoadetLoadScreenWebeb(webView)
 }
 
