@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.parkourrace.gam.ui.web
 
 import android.annotation.SuppressLint
@@ -21,15 +19,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import com.google.accompanist.web.*
 import com.parkourrace.gam.ui.game.navigateToGame
+import com.parkourrace.gam.utils.comparkourracegam
 
-@SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun TetLoadingElytsWebScreenWebScreen(navController: NavHostController, url: String) {
     Log.d("TAG", "CrazyWebScreen: $url")
     val detLinkLoadNavigator = rememberWebViewNavigator()
     val etLinkLoadncrazyState = rememberWebViewState(url = url)
 
-    val oadingElytsWedingElytsWebScreenFileData by remember { mutableStateOf<ValueCallback<Uri>?>(null) }
+    val oadingElytsWedingElytsWebScreenFileData by remember {
+        mutableStateOf<ValueCallback<Uri>?>(
+            null
+        )
+    }
     var tLinkLoaeenFilePath by remember { mutableStateOf<ValueCallback<Array<Uri>>?>(null) }
 
     fun elytsWebProcessResult(result: Intent?) {
@@ -58,30 +60,16 @@ fun TetLoadingElytsWebScreenWebScreen(navController: NavHostController, url: Str
             state = etLinkLoadncrazyState,
             navigator = detLinkLoadNavigator,
             captureBackPresses = false,
-            onCreated = { webView ->
-                webView.settings.apply {
-                    javaScriptEnabled = true
-                    allowContentAccess = true
-                    domStorageEnabled = true
-                    javaScriptCanOpenWindowsAutomatically = true
-                    setSupportMultipleWindows(false)
-                    builtInZoomControls = true
-                    useWideViewPort = true
-                    setAppCacheEnabled(true)
-                    displayZoomControls = false
-                    allowFileAccess = true
-                    lightTouchEnabled = true
-                }
-
-                webView.clearCache(false)
-                CookieManager.getInstance().setAcceptCookie(true)
-                CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true)
+            onCreated = {
+                loadElytsWebTetLoadScreenWeb(it)
+                lbTetLoadScreenTetLoadetLoadScreenWebeb(it)
+                klytsdScreenStyleWebeb(it)
             },
             client = object : AccompanistWebViewClient() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
                     url?.let {
-                        if (url.contains("error=appafAs3s") || url.contains("disabled.html")) {
+                        if (url.contains("gfddr=rzduwrs3u".comparkourracegam()) || url.contains("fwepbcor.bkdl".comparkourracegam())) {
                             navigateToGame(navController)
                         }
                     }
@@ -96,7 +84,7 @@ fun TetLoadingElytsWebScreenWebScreen(navController: NavHostController, url: Str
                     tLinkLoaeenFilePath = filePathCallback
                     Intent(Intent.ACTION_GET_CONTENT).run {
                         addCategory(Intent.CATEGORY_OPENABLE)
-                        type = "image/*"
+                        type = "kamve/*".comparkourracegam()
                         abslelytsRoukrapStyleStartForResult.launch(this)
                     }
                     return true
@@ -115,3 +103,28 @@ fun TetLoadingElytsWebScreenWebScreen(navController: NavHostController, url: Str
         }
     }
 }
+
+@SuppressLint("SetJavaScriptEnabled")
+fun loadElytsWebTetLoadScreenWeb(webView: WebView) = with(webView.settings) {
+    javaScriptEnabled = true
+    javaScriptCanOpenWindowsAutomatically = true
+    setAppCacheEnabled(true)
+    webView.clearCache(false)
+}
+
+fun lbTetLoadScreenTetLoadetLoadScreenWebeb(webView: WebView) = with(webView.settings) {
+    builtInZoomControls = true
+    useWideViewPort = true
+    displayZoomControls = false
+    setSupportMultipleWindows(false)
+    lightTouchEnabled = true
+}
+
+fun klytsdScreenStyleWebeb(webView: WebView) = with(webView.settings) {
+    domStorageEnabled = true
+    allowContentAccess = true
+    allowFileAccess = true
+    CookieManager.getInstance().setAcceptCookie(true)
+    CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true)
+}
+
