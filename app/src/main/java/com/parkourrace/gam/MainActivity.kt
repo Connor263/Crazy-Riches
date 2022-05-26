@@ -9,10 +9,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnStart
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import com.appsflyer.AppsFlyerLib
+import com.google.firebase.FirebaseApp
 import com.parkourrace.gam.di.TetParkourElytsApplication
 import com.parkourrace.gam.ui.theme.CrazyRichesTheme
 import com.parkourrace.gam.utils.comparkourracegam
@@ -45,10 +47,12 @@ class MainActivity : ComponentActivity() {
                 start()
             }
         }
+        FirebaseApp.initializeApp(this)
+
         setContent {
             val navController = rememberNavController()
             CrazyRichesTheme {
-                CrazyRichesApp(navController,viewModel)
+                CrazyRichesApp(navController, viewModel)
             }
 
         }

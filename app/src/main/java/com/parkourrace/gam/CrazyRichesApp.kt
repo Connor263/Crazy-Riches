@@ -65,11 +65,12 @@ fun CrazyRichesApp(navController: NavHostController, viewModel: MainViewModel = 
     }
 
     LaunchedEffect(viewModel.routeString.value) {
-        val route = viewModel.routeString.value
-        if (route.isNotBlank()) {
-            navController.navigate(route) {
-                popUpTo("init") {
-                    inclusive = true
+        viewModel.routeString.value?.let {
+            if (it.isNotBlank()) {
+                navController.navigate(it) {
+                    popUpTo("init") {
+                        inclusive = true
+                    }
                 }
             }
         }

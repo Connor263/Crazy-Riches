@@ -8,33 +8,28 @@ import com.parkourrace.gam.R
 import com.parkourrace.gam.interfaces.TetRoukrapFirebase
 
 class TetRoukrapFirebaseImpl(private val context: Context) : TetRoukrapFirebase {
-    var tetRoukrapINSTANCE: FirebaseRemoteConfig? = null
-        get() {
-            FirebaseApp.initializeApp(context)
-            return if (field == null) {
-                val tetRoukrapSettings =
-                    FirebaseRemoteConfigSettings.Builder().setFetchTimeoutInSeconds(2500).build()
-                field = FirebaseRemoteConfig.getInstance().apply {
-                    setConfigSettingsAsync(tetRoukrapSettings)
-                }
-                field
-            } else field
-        }
+    init {
+        FirebaseApp.initializeApp(context)
+    }
+
+    private val tetRoukrapSettings =
+        FirebaseRemoteConfigSettings.Builder()
+            .setFetchTimeoutInSeconds(2500)
+            .build()
+    private val tetRoukrapINSTANCE = FirebaseRemoteConfig.getInstance().apply {
+        setConfigSettingsAsync(tetRoukrapSettings)
+    }
 
     override fun getTetRoukrapUrl(callback: (String) -> Unit) {
-        tetRoukrapINSTANCE?.fetchAndActivate()?.addOnCompleteListener {
-            callback(
-                tetRoukrapINSTANCE!!.getString(
-                    context.resources.getString(R.string.firebase_root_url)
-                )
-            )
+        tetRoukrapINSTANCE.fetchAndActivate().addOnCompleteListener {
+            callback(tetRoukrapINSTANCE.getString(context.resources.getString(R.string.firebase_root_url)))
         }
     }
 
     override fun getTetRoukrapSwitch(callback: (Boolean) -> Unit) {
-        tetRoukrapINSTANCE?.fetchAndActivate()?.addOnCompleteListener {
+        tetRoukrapINSTANCE.fetchAndActivate().addOnCompleteListener {
             callback(
-                tetRoukrapINSTANCE!!.getBoolean(
+                tetRoukrapINSTANCE.getBoolean(
                     context.resources.getString(R.string.firebase_switch)
                 )
             )

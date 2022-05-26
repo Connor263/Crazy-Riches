@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
+import com.google.firebase.FirebaseApp
 import com.onesignal.OneSignal
 import com.parkourrace.gam.R
 
