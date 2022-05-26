@@ -2,16 +2,10 @@ package com.parkourrace.gam.data.web.preferences
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.preferencesOf
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.parkourrace.gam.utils.CRAZY_LINK_PREFERENCES_DATA_STORE
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.first
+import com.parkourrace.gam.utils.LINK_PREFERENCES_DATA_STORE
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 
 
 class TetParkourElytsLinkPreferencesDataStore(private val context: Context) {
@@ -28,6 +22,6 @@ class TetParkourElytsLinkPreferencesDataStore(private val context: Context) {
 
     companion object {
         val tetParkourElytsLinkKey = stringPreferencesKey("CrazyLink")
-        val Context.tetParkourElytsLinkPreferences by preferencesDataStore(name = CRAZY_LINK_PREFERENCES_DATA_STORE)
+        val Context.tetParkourElytsLinkPreferences by preferencesDataStore(name = LINK_PREFERENCES_DATA_STORE)
     }
 }

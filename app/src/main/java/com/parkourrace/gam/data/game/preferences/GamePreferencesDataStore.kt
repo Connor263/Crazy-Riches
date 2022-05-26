@@ -3,9 +3,9 @@ package com.parkourrace.gam.data.game.preferences
 import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.parkourrace.gam.utils.CRAZY_LINK_PREFERENCES_DATA_STORE
+import com.parkourrace.gam.utils.GAME_PREFERENCES_DATA_STORE
+import com.parkourrace.gam.utils.LINK_PREFERENCES_DATA_STORE
 import kotlinx.coroutines.flow.map
 
 class GamePreferencesDataStore(private val context: Context) {
@@ -34,7 +34,7 @@ class GamePreferencesDataStore(private val context: Context) {
     companion object {
         val levelKey = intPreferencesKey("Level")
         val fontFamilyKey = intPreferencesKey("Font")
-        val Context.gamePreferences by preferencesDataStore(name = CRAZY_LINK_PREFERENCES_DATA_STORE)
+        val Context.gamePreferences by preferencesDataStore(name = GAME_PREFERENCES_DATA_STORE)
     }
 }
 
