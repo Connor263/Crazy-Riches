@@ -1,25 +1,15 @@
 package com.parkourrace.gam.ui.theme
 
-import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.core.view.ViewCompat
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.parkourrace.gam.MainViewModel
 import com.parkourrace.gam.data.game.preferences.GamePreferencesDataStore
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,

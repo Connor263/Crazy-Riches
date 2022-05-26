@@ -1,6 +1,5 @@
 package com.parkourrace.gam.ui
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -34,7 +33,6 @@ fun InitScreen(viewModel: MainViewModel = viewModel()) {
                 )
             }
         } else {
-            Log.d("TAG", "InitScreen: 22")
             AlertDialog(
                 title = {
                     Spacer(modifier = Modifier.height(8.dp))

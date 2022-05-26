@@ -1,6 +1,5 @@
 package com.parkourrace.gam.ui.game.options
 
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationEndReason
@@ -18,8 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily.Companion.Cursive
-import androidx.compose.ui.text.font.FontFamily.Companion.Serif
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -148,7 +145,6 @@ fun OptionScreen(navController: NavController) {
             when (this.endReason) {
                 AnimationEndReason.BoundReached -> {}
                 AnimationEndReason.Finished -> {
-                    Log.d("TAG", "RuleScreen: ")
                     if (fallingAnimation.value + 50F <= 0) {
                         indexAnim++
                     }

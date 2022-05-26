@@ -2,7 +2,6 @@ package com.parkourrace.gam
 
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,8 +16,6 @@ import com.parkourrace.gam.utils.comparkourracegam
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-
-const val TAG = "TAG"
 
 class MainViewModel : ViewModel() {
     var routeString = mutableStateOf("")
@@ -43,13 +40,9 @@ class MainViewModel : ViewModel() {
         tetRoukrapFirebaseImpl(context).getTetRoukrapUrl { url ->
             callback(url.contains("jhfe".comparkourracegam()))
             tetParkourElytsLink.tetRuokrapLinkUrl = url
-
-            Log.d(TAG, "tetRoukrapElytsFirebase: Url $url")
         }
         tetRoukrapFirebaseImpl(context).getTetRoukrapSwitch { switch ->
             tetParkourElytsLink.tetRuokrapLinkOrganicAccess = switch
-
-            Log.d(TAG, "tetRoukrapElytsFirebase: Switch $switch")
         }
     }
 
@@ -59,7 +52,6 @@ class MainViewModel : ViewModel() {
 
     fun aFTetParkourElytsIDSetAFID(id: String) {
         tetParkourElytsLink.tetRuokrapLinkAppsFlyerUserId = id
-        Log.d(TAG, "SetAFID: $id")
     }
 
     fun tetParkourElytsParkourSetStatusAF(value: String) {
@@ -67,7 +59,6 @@ class MainViewModel : ViewModel() {
         if (value == tetParkourSwitch && tetParkourElytsLink.tetRuokrapLinkDeepLink == null) {
             tetParkourElytsLink.tetRuokrapLinkMediaSource = "qfspnzm".comparkourracegam()
         }
-        Log.d(TAG, "SetAFStatus: $value")
     }
 
     fun tetParkourSetElytsSetAFCampaign(value: String) {
@@ -75,18 +66,14 @@ class MainViewModel : ViewModel() {
         tetParkourElytsLink.tetRuokrapLinkCampaign?.let {
             tetParkourElytsLink.tetRuokrapLinkSubAll = it.split("_")
         }
-        Log.d(TAG, "SetAFCampaign: campaign $value")
-        Log.d(TAG, "SetAFCampaign: subAll ${tetParkourElytsLink.tetRuokrapLinkSubAll}")
     }
 
     fun channelAFTetParkourElytsSetAFChannel(value: String) {
         tetParkourElytsLink.tetRuokrapLinkAfChannel = value
-        Log.d(TAG, "SetAFChannel: $value")
     }
 
     fun mediaTetParkourSourceElytsSetAFMediaSource(value: String) {
         tetParkourElytsLink.tetRuokrapLinkMediaSource = value
-        Log.d(TAG, "SetMediaSource: $value")
     }
 
     private fun deepTetParkourElytsSetDeepLink(value: Uri?) {
@@ -95,8 +82,6 @@ class MainViewModel : ViewModel() {
             val parkRuokrapTetArray = it.split("//")
             tetParkourElytsLink.tetRuokrapLinkSubAll = parkRuokrapTetArray[1].split("_")
         }
-        Log.d(TAG, "SetDeepLink: deepLink $value")
-        Log.d(TAG, "SetDeepLink: subAll ${tetParkourElytsLink.tetRuokrapLinkSubAll}")
     }
 
     fun linkBuildTetRoukrapBuildLink(context: Context, callback: (String) -> Unit) =
@@ -114,8 +99,6 @@ class MainViewModel : ViewModel() {
             AdvertisingIdClient.getAdvertisingIdInfo(context).id.toString()
         tetParkourElytsLink.tetRuokrapLinkGoogleId = wadTetParkourGootetParkourStylesLoadinggleID
         OneSignal.setExternalUserId(wadTetParkourGootetParkourStylesLoadinggleID)
-        Log.d(TAG, "SetGoogleID: $wadTetParkourGootetParkourStylesLoadinggleID")
-
 
         FacebookSdk.setAutoInitEnabled(true)
         FacebookSdk.fullyInitialize()

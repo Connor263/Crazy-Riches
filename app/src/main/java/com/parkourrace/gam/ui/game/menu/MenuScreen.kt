@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.parkourrace.gam.R
-import com.parkourrace.gam.ui.game.navigateToGame
 
 @Composable
 fun MenuScreen(navController: NavController) {

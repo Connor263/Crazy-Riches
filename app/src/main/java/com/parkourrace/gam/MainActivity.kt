@@ -2,14 +2,12 @@ package com.parkourrace.gam
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnStart
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
@@ -71,7 +69,6 @@ class MainActivity : ComponentActivity() {
         }
 
         viewModel.getTetParkourElytsLinkValue(this) {
-            Log.d(TAG, "initLoading: cache $it")
             if (it.isNotBlank()) {
                 tetStylesLoadingandnavigateToWeb(it)
             } else {
@@ -133,6 +130,5 @@ class MainActivity : ComponentActivity() {
     private fun tetStylesLoadingandnavigateToWeb(link: String) {
         val stylesurl = URLEncoder.encode(link, StandardCharsets.UTF_8.toString())
         viewModel.routeString.value = "web/$stylesurl"
-        Log.d(TAG, "navigateToWeb: $link")
     }
 }

@@ -1,6 +1,5 @@
 package com.parkourrace.gam.ui.game.composables
 
-import androidx.compose.animation.Animatable
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*

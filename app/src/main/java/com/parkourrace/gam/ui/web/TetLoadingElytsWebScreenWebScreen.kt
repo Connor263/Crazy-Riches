@@ -6,7 +6,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import android.webkit.CookieManager
 import android.webkit.ValueCallback
 import android.webkit.WebView
@@ -25,7 +24,6 @@ import com.parkourrace.gam.utils.comparkourracegam
 
 @Composable
 fun TetLoadingElytsWebScreenWebScreen(navController: NavHostController, url: String) {
-    Log.d("TAG", "CrazyWebScreen: $url")
     val detLinkLoadNavigator = rememberWebViewNavigator()
     val etLinkLoadncrazyState = rememberWebViewState(url = url)
 

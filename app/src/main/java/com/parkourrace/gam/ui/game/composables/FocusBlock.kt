@@ -1,6 +1,5 @@
 package com.parkourrace.gam.ui.game.composables
 
-import android.util.Log
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationEndReason
 import androidx.compose.animation.core.tween
@@ -13,7 +12,6 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.parkourrace.gam.R
 import com.parkourrace.gam.ui.game.GameViewModel
 import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
 import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
@@ -147,7 +145,6 @@ fun FocusBlock(viewModel: GameViewModel = viewModel()) {
                     return@LaunchedEffect
                 } else {
                     indexValid++
-                    Log.d("TAG", "FocusBlock: $indexValid")
                     if (indexValid != bufferFocusBlockList.count()) return@forEach
                 }
 
