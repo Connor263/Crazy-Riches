@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.parkourrace.gam.utils.LINK_PREFERENCES_DATA_STORE
+import com.parkourrace.gam.utils.game.LINK_PREFERENCES_DATA_STORE
 import kotlinx.coroutines.flow.map
 
 

@@ -10,9 +10,9 @@ import androidx.lifecycle.viewModelScope
 import com.parkourrace.gam.R
 import com.parkourrace.gam.data.game.model.Block
 import com.parkourrace.gam.data.game.preferences.GamePreferencesDataStore
-import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
-import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
-import com.parkourrace.gam.utils.generateBlock
+import com.parkourrace.gam.utils.game.TETRIS_COLUMN_SIZE
+import com.parkourrace.gam.utils.game.TETRIS_ROW_SIZE
+import com.parkourrace.gam.utils.game.generateBlock
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 

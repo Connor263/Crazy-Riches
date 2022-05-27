@@ -1,8 +1,8 @@
 package com.parkourrace.gam.data.game.model
 
 import androidx.annotation.DrawableRes
-import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
-import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
+import com.parkourrace.gam.utils.game.TETRIS_COLUMN_SIZE
+import com.parkourrace.gam.utils.game.TETRIS_ROW_SIZE
 
 data class Block(
     @DrawableRes var drawableId: Int,

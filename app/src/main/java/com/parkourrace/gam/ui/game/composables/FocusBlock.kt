@@ -13,10 +13,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.parkourrace.gam.ui.game.GameViewModel
-import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
-import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
+import com.parkourrace.gam.utils.game.TETRIS_COLUMN_SIZE
+import com.parkourrace.gam.utils.game.TETRIS_ROW_SIZE
 import com.parkourrace.gam.utils.game.enums.GameSound
-import com.parkourrace.gam.utils.makeSound
+import com.parkourrace.gam.utils.game.makeSound
 
 @Composable
 fun FocusBlock(viewModel: GameViewModel = viewModel()) {

@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.parkourrace.gam.R
 import com.parkourrace.gam.ui.game.GameViewModel
-import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
+import com.parkourrace.gam.utils.game.TETRIS_COLUMN_SIZE
 
 
 @OptIn(ExperimentalFoundationApi::class)

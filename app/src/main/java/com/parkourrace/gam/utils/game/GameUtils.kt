@@ -1,4 +1,4 @@
-package com.parkourrace.gam.utils
+package com.parkourrace.gam.utils.game
 
 import android.content.Context
 import android.media.MediaPlayer

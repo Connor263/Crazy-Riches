@@ -32,8 +32,8 @@ import androidx.navigation.compose.rememberNavController
 import com.parkourrace.gam.R
 import com.parkourrace.gam.ui.game.composables.Board
 import com.parkourrace.gam.ui.game.composables.FocusBlockView
-import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
-import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
+import com.parkourrace.gam.utils.game.TETRIS_COLUMN_SIZE
+import com.parkourrace.gam.utils.game.TETRIS_ROW_SIZE
 
 @Preview(showBackground = true)
 @Composable
