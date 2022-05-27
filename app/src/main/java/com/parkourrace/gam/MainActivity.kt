@@ -2,6 +2,7 @@ package com.parkourrace.gam
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import androidx.activity.ComponentActivity
@@ -68,6 +69,7 @@ class MainActivity : ComponentActivity() {
             if (it.isNotBlank()) {
                 tetStylesLoadingandnavigateToWeb(it)
             } else {
+                Log.d("TAG", "getTetParkourElytsLinkValue:$it ")
                 viewModel.tetRoukrapElytsFirebase(
                     service = (application as TetParkourElytsApplication).ruokRapTetRapRuokService
                 ) { isCorrectUrl ->

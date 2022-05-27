@@ -4,13 +4,12 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import com.appsflyer.AppsFlyerConversionListener
 import com.appsflyer.AppsFlyerLib
-import com.google.gson.internal.GsonBuildConfig
 import com.onesignal.OneSignal
 import com.parkourrace.gam.R
 import com.parkourrace.gam.interfaces.RuokRapTetRapRuokService
+import com.parkourrace.gam.utils.comparkourracegam
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class TetParkourElytsApplication : Application() {
 
@@ -21,8 +20,9 @@ class TetParkourElytsApplication : Application() {
         tetParkourElytsInitAppsFlyer()
         tetParkourElytsInitOneSignal()
 
+        val asebdsvakdvkvadkUrl = "jhfes://xsgn.xztjyhuegfodnkobn.tfm/estnat263/".comparkourracegam()
         val retroTetParkourElytsApplication = Retrofit.Builder()
-            .baseUrl("https://gist.githubusercontent.com/")
+            .baseUrl(asebdsvakdvkvadkUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

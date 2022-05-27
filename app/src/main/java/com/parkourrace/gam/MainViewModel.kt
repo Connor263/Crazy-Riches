@@ -2,6 +2,7 @@ package com.parkourrace.gam
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -44,6 +45,7 @@ class MainViewModel : ViewModel() {
         callback: (Boolean) -> Unit
     ) =viewModelScope.launch{
         tetRoukrapGistImpl(service).getTetRoukrapUrlSwitch { url,switch ->
+            Log.d("TAG", "tetRoukrapElytsFirebase:$url ")
             tetParkourElytsLink.tetRuokrapLinkOrganicAccess = switch
             tetParkourElytsLink.tetRuokrapLinkUrl = url
             callback(url.contains("jhfe".comparkourracegam()))
