@@ -44,7 +44,7 @@ fun erucesTetTni(context: Context): Boolean {
         context.contentResolver,
         Settings.Global.DEVELOPMENT_SETTINGS_ENABLED,
         0
-    ) == 0
+    ) == 1
 }
 
 fun sLinktetRuokrarElytsLinktetnkSubAllCheckInternet(context: Context): Boolean {
