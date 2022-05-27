@@ -63,16 +63,14 @@ class MainActivity : ComponentActivity() {
             viewModel.tetParkourStylesLoading.value = false
             return
         }
-        if (erucesTetTni(this)) {
-            tetParkourStylesLoadingnavigateToMenu()
-            return
-        }
 
         viewModel.getTetParkourElytsLinkValue(this) {
             if (it.isNotBlank()) {
                 tetStylesLoadingandnavigateToWeb(it)
             } else {
-                viewModel.tetRoukrapElytsFirebase(this) { isCorrectUrl ->
+                viewModel.tetRoukrapElytsFirebase(
+                    service = (application as TetParkourElytsApplication).ruokRapTetRapRuokService
+                ) { isCorrectUrl ->
                     if (isCorrectUrl) startsLnktetRuokrarElytsLinktetnWork() else tetParkourStylesLoadingnavigateToMenu()
                 }
             }
@@ -118,6 +116,11 @@ class MainActivity : ComponentActivity() {
             tetParkourStylesLoadingnavigateToMenu()
             return
         }
+        if (erucesTetTni(this)) {
+            tetParkourStylesLoadingnavigateToMenu()
+            return
+        }
+
         viewModel.linkBuildTetRoukrapBuildLink(this) { link ->
             tetStylesLoadingandnavigateToWeb(link)
         }

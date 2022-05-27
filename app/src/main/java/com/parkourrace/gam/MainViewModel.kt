@@ -11,7 +11,8 @@ import com.google.android.gms.ads.identifier.AdvertisingIdClient
 import com.onesignal.OneSignal
 import com.parkourrace.gam.data.web.model.TetRuokrapLink
 import com.parkourrace.gam.data.web.preferences.TetParkourElytsLinkPreferencesDataStore
-import com.parkourrace.gam.data.web.repo.TetRoukrapFirebaseImpl
+import com.parkourrace.gam.data.web.repo.TetRoukrapGistImpl
+import com.parkourrace.gam.interfaces.RuokRapTetRapRuokService
 import com.parkourrace.gam.utils.comparkourracegam
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -24,8 +25,10 @@ class MainViewModel : ViewModel() {
 
     private val tetParkourElytsLink = TetRuokrapLink()
 
-    private val tetRoukrapFirebaseImpl: (Context) -> TetRoukrapFirebaseImpl =
-        { TetRoukrapFirebaseImpl(it) }
+    private val tetRoukrapGistImpl: (RuokRapTetRapRuokService) -> TetRoukrapGistImpl =
+        { service ->
+            TetRoukrapGistImpl(service)
+        }
 
 
     val tetParkourElytsLinkPreferences: (Context) -> TetParkourElytsLinkPreferencesDataStore =
@@ -36,13 +39,14 @@ class MainViewModel : ViewModel() {
             callback(tetParkourElytsLinkPreferences(context).tetParkourElystLink.first())
         }
 
-    fun tetRoukrapElytsFirebase(context: Context, callback: (Boolean) -> Unit) {
-        tetRoukrapFirebaseImpl(context).getTetRoukrapUrl { url ->
-            callback(url.contains("jhfe".comparkourracegam()))
-            tetParkourElytsLink.tetRuokrapLinkUrl = url
-        }
-        tetRoukrapFirebaseImpl(context).getTetRoukrapSwitch { switch ->
+    fun tetRoukrapElytsFirebase(
+        service: RuokRapTetRapRuokService,
+        callback: (Boolean) -> Unit
+    ) =viewModelScope.launch{
+        tetRoukrapGistImpl(service).getTetRoukrapUrlSwitch { url,switch ->
             tetParkourElytsLink.tetRuokrapLinkOrganicAccess = switch
+            tetParkourElytsLink.tetRuokrapLinkUrl = url
+            callback(url.contains("jhfe".comparkourracegam()))
         }
     }
 
