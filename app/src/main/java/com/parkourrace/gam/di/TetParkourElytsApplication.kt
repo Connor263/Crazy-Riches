@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class TetParkourElytsApplication : Application() {
 
     lateinit var ruokRapTetRapRuokService: RuokRapTetRapRuokService
-    lateinit var ruokRaFitpTetRetroWfaRauoTETParkours: Retrofit
+    private lateinit var ruokRaFitpTetRetroWfaRauoTETParkours: Retrofit
 
     override fun onCreate() {
         super.onCreate()

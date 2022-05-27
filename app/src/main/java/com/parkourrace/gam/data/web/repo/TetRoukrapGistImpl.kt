@@ -1,10 +1,7 @@
 package com.parkourrace.gam.data.web.repo
 
-import android.content.Context
-import android.util.Log
 import com.parkourrace.gam.interfaces.RuokRapTetRapRuokService
 import com.parkourrace.gam.interfaces.TetRoukrapGist
-import com.parkourrace.gam.utils.comparkourracegam
 
 class TetRoukrapGistImpl(
     private val service: RuokRapTetRapRuokService,
