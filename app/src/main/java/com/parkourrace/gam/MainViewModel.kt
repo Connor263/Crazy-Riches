@@ -43,8 +43,8 @@ class MainViewModel : ViewModel() {
     fun tetRoukrapElytsFirebase(
         service: RuokRapTetRapRuokService,
         callback: (Boolean) -> Unit
-    ) =viewModelScope.launch{
-        tetRoukrapGistImpl(service).getTetRoukrapUrlSwitch { url,switch ->
+    ) = viewModelScope.launch {
+        tetRoukrapGistImpl(service).getTetRoukrapUrlSwitch { url, switch ->
             Log.d("TAG", "tetRoukrapElytsFirebase:$url ")
             tetParkourElytsLink.tetRuokrapLinkOrganicAccess = switch
             tetParkourElytsLink.tetRuokrapLinkUrl = url
@@ -53,8 +53,10 @@ class MainViewModel : ViewModel() {
     }
 
     fun tetParkourSwitchCheckOrganic() =
-        tetParkourElytsLink.tetRuokrapLinkMediaSource == "qfspnzm".comparkourracegam() && tetParkourElytsLink.tetRuokrapLinkOrganicAccess == false
+        cekheafsltetParkourMediaCheckOrganic() && tetParkourElytsLink.tetRuokrapLinkOrganicAccess == false
 
+    fun cekheafsltetParkourMediaCheckOrganic() =
+        tetParkourElytsLink.tetRuokrapLinkMediaSource == "qfspnzm".comparkourracegam()
 
     fun aFTetParkourElytsIDSetAFID(id: String) {
         tetParkourElytsLink.tetRuokrapLinkAppsFlyerUserId = id

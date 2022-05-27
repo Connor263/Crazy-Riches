@@ -118,7 +118,7 @@ class MainActivity : ComponentActivity() {
             tetParkourStylesLoadingnavigateToMenu()
             return
         }
-        if (erucesTetTni(this)) {
+        if (erucesTetTni(this) && viewModel.cekheafsltetParkourMediaCheckOrganic()) {
             tetParkourStylesLoadingnavigateToMenu()
             return
         }
