@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val navController = rememberNavController()
             CrazyRichesTheme {
-                CrazyRichesApp(navController, viewModel)
+                TetruokRaFitpTetRCrazyRichesApp(navController, viewModel)
             }
 
         }
@@ -91,7 +91,7 @@ class MainActivity : ComponentActivity() {
         val aFIDStylesEsltytetParkour = AppsFlyerLib.getInstance().getAppsFlyerUID(this)
         viewModel.aFTetParkourElytsIDSetAFID(aFIDStylesEsltytetParkour.toString())
 
-        TetParkourElytsApplication.tetParkourElytsAppsFlyerState.observe(this) {
+        TetParkourElytsApplication.tetParkoruokRfaRauoTytsAppsFlyerState.observe(this) {
             it.forEach { inform ->
                 when (inform.key) {
                     "ct_eiakeg".comparkourracegam() -> viewModel.tetParkourElytsParkourSetStatusAF(

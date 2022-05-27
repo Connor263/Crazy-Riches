@@ -21,7 +21,7 @@ import com.parkourrace.gam.ui.game.rules.RuleScreen
 import com.parkourrace.gam.ui.web.TetLoadingElytsWebScreenWebScreen
 
 @Composable
-fun CrazyRichesApp(navController: NavHostController, viewModel: MainViewModel = viewModel()) {
+fun TetruokRaFitpTetRCrazyRichesApp(navController: NavHostController, viewModel: MainViewModel = viewModel()) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         contentColor = MaterialTheme.colors.background

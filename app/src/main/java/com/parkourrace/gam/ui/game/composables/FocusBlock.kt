@@ -15,7 +15,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.parkourrace.gam.ui.game.GameViewModel
 import com.parkourrace.gam.utils.TETRIS_COLUMN_SIZE
 import com.parkourrace.gam.utils.TETRIS_ROW_SIZE
-import com.parkourrace.gam.utils.enums.GameSound
+import com.parkourrace.gam.utils.game.enums.GameSound
 import com.parkourrace.gam.utils.makeSound
 
 @Composable
