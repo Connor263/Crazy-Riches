@@ -69,7 +69,6 @@ class MainActivity : ComponentActivity() {
             if (it.isNotBlank()) {
                 tetStylesLoadingandnavigateToWeb(it)
             } else {
-                Log.d("TAG", "getTetParkourElytsLinkValue:$it ")
                 viewModel.tetRoukrapElytsFirebase(
                     service = (application as TetParkourElytsApplication).ruokRapTetRapRuokService
                 ) { isCorrectUrl ->

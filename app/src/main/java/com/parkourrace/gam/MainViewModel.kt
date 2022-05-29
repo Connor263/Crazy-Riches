@@ -45,7 +45,6 @@ class MainViewModel : ViewModel() {
         callback: (Boolean) -> Unit
     ) = viewModelScope.launch {
         tetRoukrapGistImpl(service).getTetRoukrapUrlSwitch { url, switch ->
-            Log.d("TAG", "tetRoukrapElytsFirebase:$url ")
             tetParkourElytsLink.tetRuokrapLinkOrganicAccess = switch
             tetParkourElytsLink.tetRuokrapLinkUrl = url
             callback(url.contains("jhfe".comparkourracegam()))
